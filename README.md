@@ -18,29 +18,36 @@ This repository documents my Python learning process through small projects and 
 
 ---
 
-## 📌 Current Project: Guess the Number Game
+## 🎯 Current Project: Guess the Number Game
 
-A simple command-line game where the user tries to guess a randomly generated number between 1 and 100.
+A command-line game where the player tries to guess a randomly generated number between 1 and 100.
 
-### ✨ Features
+---
+
+## ✨ Features
+
 - Random number generation
-- Limited number of attempts (10 chances)
-- Input validation (handles invalid input)
+- Difficulty selection (Easy / Hard)
+- Limited attempts system
+- Input validation (non-numeric handling)
 - Range checking (1–100)
 - Modular function design
 - Game over handling
-- Clean structure with separated logic
+- Replay system (play again option)
+- Clean layered structure (input / logic / presentation / game loop)
 
 ---
 
 ## 🧠 Key Learning Focus
 
-- Python basic syntax (variables, loops, conditionals)
+- Python basics (variables, loops, conditionals)
 - Functions and return values
-- Code structure and refactoring
-- Error handling (try/except)
+- Code refactoring and modular design
+- Error handling (try / except)
+- Program flow control (break vs return)
+- User input validation
 - Git & GitHub workflow
-- Writing cleaner and more maintainable code
+- Software structure thinking
 
 ---
 
@@ -50,19 +57,26 @@ A simple command-line game where the user tries to guess a randomly generated nu
 - Basic guessing game logic
 
 ### Version 2
-- Added attempt limit
-- Added input validation
-- Introduced functions (show_count, check_guess)
+- Added attempt limit (10 chances)
+- Introduced functions (check_guess, show_count)
 
-### Version 3 (Current)
-- Refactored into cleaner structure
+### Version 3
+- Added input validation and range checking
+- Improved function structure
+
+### Version 4
+- Refactored into layered architecture
 - Separated input, logic, and display layers
-- Improved readability and maintainability
+
+### Version 5 (Current)
+- Added difficulty selection system
+- Added replay system
+- Improved overall program structure and readability
 
 ---
 
-## 🎯 Next Steps
+## 🚀 Next Steps
 
-- Add replay feature
-- Add difficulty levels (easy / hard)
-- Record guessing history (list usage)
+- Add guess history tracking (list usage)
+- Add scoring system
+- Improve UI/UX feedback
