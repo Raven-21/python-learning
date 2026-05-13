@@ -3,14 +3,23 @@ import random
 # -------------------------
 # Initialization
 # -------------------------
-number = random.randint(1,100)
-count = 0
-chance = 10
-#print(number)
-
 print("Welcome to Guess the Number!")
 print("Please enter a number between 1 and 100.")
-print("You have 10 chances. Good luck!")
+
+def choose_difficulty():
+    while True:
+        choice = input(
+            "\nChoose Difficulty:\n"
+            "1. Easy (10 Chances)\n"
+            "2. Hard (5 Chances)\n"
+            "Select: "
+        )
+        if choice == "1":
+            return 10
+        elif choice == "2":
+            return 5
+        else:
+            print("Please choose 1 or 2.")
 
 # -------------------------
 # Input layer
@@ -63,29 +72,54 @@ def check_guess(current_guess,current_number, current_count):
         return True
 
 # -------------------------
+# Game Layer
+# -------------------------
+def play_game():
+    number = random.randint(1, 100)
+    count = 0
+    chance = choose_difficulty()
+    print(f"You have {chance} chances. Good luck!")
+    #print(number)
+
+    while True:
+        guess = get_guess()
+        if guess is None:
+            continue
+        if guess < 1 or guess > 100:
+            print("Please enter a number between 1 and 100!")
+            continue
+
+        count += 1
+        chance -= 1
+
+        # Determine Result
+        if check_guess(guess, number, count):
+            break
+
+        # Show Remaining Chance
+        show_chance(chance)
+
+        # Game Over Condition
+        if chance == 0:
+            show_game_over(number)
+            break
+
+def play_again():
+    while True:
+        choice = input("\nWould you like to play again? (y/n): ")
+        if choice == "y":
+            return True
+        elif choice == "n":
+            print("Thank you for playing!")
+            return False
+        else:
+            print("Please enter a yes or no!")
+
+# -------------------------
 # Main Program
 # -------------------------
 while True:
-    guess = get_guess()
+    play_game()
 
-    if guess is None:
-        continue
-
-    if guess < 1 or guess > 100:
-        print("Please enter a number between 1 and 100!")
-        continue
-
-    count += 1
-    chance -= 1
-
-    # Determine Result
-    if check_guess(guess, number, count):
-        break
-
-    # Show Remaining Chance
-    show_chance(chance)
-
-    # Game Over Condition
-    if chance == 0:
-        show_game_over(number)
+    if not play_again():
         break
