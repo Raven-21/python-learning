@@ -1,4 +1,4 @@
-# Python Learning Journey 🐍
+# 🐍 Python Learning Journey
 
 This repository records my Python learning journey.
 
@@ -9,6 +9,7 @@ This repository records my Python learning journey.
 - Input and output
 - If statements
 - Loops
+- list
 
 ## Goal
 
@@ -16,67 +17,76 @@ Learn Python and build real projects step by step.
 
 This repository documents my Python learning process through small projects and continuous refactoring.
 
+I focus on understanding programming through building real applications instead of memorizing syntax.
+
 ---
 
 ## 🎯 Current Project: Guess the Number Game
 
-A command-line game where the player tries to guess a randomly generated number between 1 and 100.
+A terminal-based number guessing game built step by step to practice Python fundamentals and software design concepts.
 
----
+### ✨ Features
 
-## ✨ Features
-
-- Random number generation
+- Random number generation (1–100)
 - Difficulty selection (Easy / Hard)
+- Input validation and error handling
 - Limited attempts system
-- Input validation (non-numeric handling)
-- Range checking (1–100)
-- Modular function design
-- Game over handling
-- Replay system (play again option)
-- Clean layered structure (input / logic / presentation / game loop)
+- Guess result feedback (Too high / Too low / Correct)
+- Guess history tracking (list)
+- Game replay system
 
----
 
-## 🧠 Key Learning Focus
+## 🧠 Key Concepts Practiced
 
-- Python basics (variables, loops, conditionals)
-- Functions and return values
-- Code refactoring and modular design
-- Error handling (try / except)
-- Program flow control (break vs return)
-- User input validation
-- Git & GitHub workflow
-- Software structure thinking
+### Python Basics
+- Variables and data types
+- Input / output
+- Conditional statements (if / elif / else)
+- Loops (while)
+- Functions
 
----
+### Intermediate Concepts
+- Exception handling (try / except)
+- List data structure
+- Function return values
+- Program flow control (break / continue)
+- State management in programs
 
-## 🔄 Development Progress
+### Software Design Thinking
+- Layered architecture (Input / Logic / Presentation / Game)
+- Separation of concerns
+- Code refactoring
+- User experience improvement
+- Incremental feature development
+
+
+## 📈 Project Evolution
 
 ### Version 1
-- Basic guessing game logic
+- Basic guessing game
+- Simple loop logic
 
-### Version 2
-- Added attempt limit (10 chances)
-- Introduced functions (check_guess, show_count)
+### Version 2 (Current)
+- Modular function design
+- Difficulty system
+- Guess history feature
+- Improved structure and readability
 
-### Version 3
-- Added input validation and range checking
-- Improved function structure
-
-### Version 4
-- Refactored into layered architecture
-- Separated input, logic, and display layers
-
-### Version 5 (Current)
-- Added difficulty selection system
-- Added replay system
-- Improved overall program structure and readability
-
----
 
 ## 🚀 Next Steps
 
-- Add guess history tracking (list usage)
-- Add scoring system
-- Improve UI/UX feedback
+Planned improvements:
+- Structured guess records (dictionary-based history)
+- Statistics (max/min/average guesses)
+- Better UI formatting for history
+- Further separation of logic and UI layers
+- Optional save/load game state
+
+
+## 🧭 Learning Philosophy
+
+This project is built with a project-driven learning approach:
+
+> "Understand by building, improve by refactoring."
+
+The goal is not just to learn Python syntax, but to learn how real software evolves.

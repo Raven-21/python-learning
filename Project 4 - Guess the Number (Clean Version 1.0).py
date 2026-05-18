@@ -3,7 +3,7 @@ import random
 # -------------------------
 # Initialization
 # -------------------------
-print("Welcome to Guess the Number!")
+print("Welcome to Guess the Number! 😀😀😀")
 print("Please enter a number between 1 and 100.")
 
 def choose_difficulty():
@@ -19,7 +19,7 @@ def choose_difficulty():
         elif choice == "2":
             return 5
         else:
-            print("Please choose 1 or 2.")
+            print("\nPlease choose 1 or 2.")
 
 # -------------------------
 # Input layer
@@ -45,10 +45,10 @@ def show_chance(current_chance):
     if current_chance > 1:
         print(f"You have {current_chance} more chances.")
     elif current_chance == 1:
-        print("You only get 1 chance. Keep it up!")
+        print("You only get 1 chance. Keep it up! 🦾🦾🦾")
 
 def show_game_over(answer):
-    print("Sorry! Game Over! - -!")
+    print("Sorry! Game Over! 😥😥😥")
     print(f"The answer is {answer}.")
 
 # -------------------------
@@ -56,18 +56,18 @@ def show_game_over(answer):
 # -------------------------
 def check_guess(current_guess,current_number, current_count):
     if current_guess > current_number:
-        print("Too high.")
+        print("Too high. ❌")
         show_count(current_count)
         return False
     elif current_guess < current_number:
-        print("Too low.")
+        print("Too low. ❌")
         show_count(current_count)
         return False
     else:
-        print("You guessed it right. ✔")
         if current_count == 1:
-            print("Congratulations!!! ^v^\nYou just guessed it 1 time!")
+            print("Unbelievable!!! 😮😮😮 You just guessed it right in 1 time! ✅")
         else:
+            print("Congratulations! 😁😁😁 You guessed it right. ✅")
             show_count(current_count)
         return True
 
@@ -78,8 +78,10 @@ def play_game():
     number = random.randint(1, 100)
     count = 0
     chance = choose_difficulty()
-    print(f"You have {chance} chances. Good luck!")
-    #print(number)
+    history = []
+
+    print(f"You have {chance} chances. Good luck! 😉")
+    print(number)
 
     while True:
         guess = get_guess()
@@ -89,11 +91,15 @@ def play_game():
             print("Please enter a number between 1 and 100!")
             continue
 
+        # Record History
+        history.append(guess)
+
         count += 1
         chance -= 1
 
         # Determine Result
         if check_guess(guess, number, count):
+            print("Guess History: ", history)
             break
 
         # Show Remaining Chance
@@ -102,7 +108,10 @@ def play_game():
         # Game Over Condition
         if chance == 0:
             show_game_over(number)
+            print("Guess History: ", history)
             break
+
+        print("Guess History: ", history)
 
 def play_again():
     while True:
@@ -110,7 +119,7 @@ def play_again():
         if choice == "y":
             return True
         elif choice == "n":
-            print("Thank you for playing!")
+            print("\nThank you for playing! 😀")
             return False
         else:
             print("Please enter a yes or no!")
