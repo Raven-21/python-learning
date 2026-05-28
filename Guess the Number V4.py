@@ -68,6 +68,11 @@ def show_history(history):
     for record in history:
         print(f"{record['guess']} → {record['result']}")
 
+def show_guess_stats(current_stats):
+    print("\nGuess Stats:")
+    for key, value in current_stats.items():
+        print(f"{key}: {value}")
+
 def show_game_over(answer):
     print("Sorry! Game Over! 😥😥😥")
     print(f"The answer is {answer}.")
@@ -80,6 +85,11 @@ def play_game():
     count = 0
     max_chance = choose_difficulty()
     history = []
+    stats = {
+        "high": 0,
+        "low": 0,
+        "correct": 0,
+    }
 
     print(f"You have {max_chance} chances. Good luck! 😉")
     print(number)
@@ -96,6 +106,7 @@ def play_game():
         count += 1
         remaining_chance = max_chance - count
         result = check_guess(guess, number)
+        stats[result] += 1
 
         # Record History
         history.append({
@@ -107,6 +118,7 @@ def play_game():
         show_result(result, count)
         if result == "correct":
             show_history(history)
+            show_guess_stats(stats)
             break
 
         # Show Remaining Chance
@@ -116,9 +128,11 @@ def play_game():
         if remaining_chance == 0:
             show_game_over(number)
             show_history(history)
+            show_guess_stats(stats)
             break
 
         show_history(history)
+        show_guess_stats(stats)
 
 def play_again():
     while True:
