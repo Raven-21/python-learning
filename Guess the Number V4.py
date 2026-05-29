@@ -26,7 +26,8 @@ def choose_difficulty():
 # -------------------------
 def get_guess():
     try:
-        current_guess = int(input("\nGuess the number: "))
+        print("-------------------------------------------------")
+        current_guess = int(input("Guess the number: "))
         return current_guess
     except ValueError:
         print("Please enter a valid number!")
@@ -42,6 +43,12 @@ def check_guess(current_guess, current_number):
         return "low"
     else:
         return "correct"
+
+# -------------------------
+# Data Layer
+# -------------------------
+def create_stats():
+    return {"high": 0, "low": 0, "correct": 0}
 
 # -------------------------
 # Presentation Layer
@@ -63,12 +70,11 @@ def show_chance(chance):
     elif chance == 1:
         print("You only get 1 chance. Keep it up! 🦾🦾🦾")
 
-def show_history(history):
+def show_summary(current_history, current_stats):
     print("\nGuess History:")
-    for record in history:
+    for record in current_history:
         print(f"{record['guess']} → {record['result']}")
 
-def show_guess_stats(current_stats):
     print("\nGuess Stats:")
     for key, value in current_stats.items():
         print(f"{key}: {value}")
@@ -80,19 +86,31 @@ def show_game_over(answer):
 # -------------------------
 # Game Layer
 # -------------------------
+def handle_round(guess, number, history, stats):
+    # Check Guess
+    result = check_guess(guess, number)
+
+    stats[result] += 1
+
+    # Add History
+    history.append({
+        "guess": guess,
+        "result": result
+    })
+
+    # Show Result
+    show_result(result, len(history))
+
+    return result
+
 def play_game():
     number = random.randint(1, 100)
-    count = 0
     max_chance = choose_difficulty()
     history = []
-    stats = {
-        "high": 0,
-        "low": 0,
-        "correct": 0,
-    }
+    stats = create_stats()
 
     print(f"You have {max_chance} chances. Good luck! 😉")
-    print(number)
+    # print(number)
 
     while True:
         # Get Input
@@ -103,36 +121,25 @@ def play_game():
             print("Please enter a number between 1 and 100!")
             continue
 
-        count += 1
-        remaining_chance = max_chance - count
-        result = check_guess(guess, number)
-        stats[result] += 1
-
-        # Record History
-        history.append({
-            "guess": guess,
-            "result": result
-        })
-
-        # Determine Result
-        show_result(result, count)
-        if result == "correct":
-            show_history(history)
-            show_guess_stats(stats)
-            break
+        # Get the Result of a Round
+        result = handle_round(guess, number, history, stats)
 
         # Show Remaining Chance
+        remaining_chance = max_chance - len(history)
         show_chance(remaining_chance)
 
-        # Game Over Condition
-        if remaining_chance == 0:
-            show_game_over(number)
-            show_history(history)
-            show_guess_stats(stats)
+        # Win Condiction
+        if result == "correct":
+            show_summary(history, stats)
             break
 
-        show_history(history)
-        show_guess_stats(stats)
+        # Lose Condition
+        if remaining_chance == 0:
+            show_game_over(number)
+            show_summary(history, stats)
+            break
+
+        show_summary(history, stats)
 
 def play_again():
     while True:
