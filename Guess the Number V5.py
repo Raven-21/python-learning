@@ -34,17 +34,6 @@ def get_guess():
         return None
 
 # -------------------------
-# Logic Layer
-# -------------------------
-def check_guess(guess, number):
-    if guess > number:
-        return "high"
-    elif guess < number:
-        return "low"
-    else:
-        return "correct"
-
-# -------------------------
 # Data Layer
 # -------------------------
 def create_game_state():
@@ -52,27 +41,43 @@ def create_game_state():
         "number": random.randint(1, 100),
         "max_chance": choose_difficulty(),
         "history": [],
-        "stats": {"high": 0, "low": 0, "correct": 0}
+        "stats": {"high": 0, "low": 0, "correct": 0},
     }
+
+def get_remaining_chance(game_state):
+    return game_state["max_chance"] - len(game_state["history"])
+
+# -------------------------
+# Logic Layer
+# -------------------------
+def check_guess(guess, game_state):
+    if guess > game_state["number"]:
+        return "high"
+    elif guess < game_state["number"]:
+        return "low"
+    else:
+        return "correct"
 
 # -------------------------
 # Presentation Layer
 # -------------------------
-def show_result(result, count):
+def show_result(result, game_state):
     if result == "high":
         print("Too High. ❌")
     elif result == "low":
         print("Too low. ❌")
     else:
-        if count == 1:
+        if len(game_state["history"]) == 1:
             print("Unbelievable!!! 😮😮😮 You just guessed it right in 1 time! ✅")
         else:
             print("Congratulations! 😁😁😁 You guessed it right. ✅")
 
-def show_chance(chance):
-    if chance > 1:
-        print(f"You have {chance} more chances.")
-    elif chance == 1:
+def show_chance(game_state):
+    remaining_chance = get_remaining_chance(game_state)
+
+    if remaining_chance > 1:
+        print(f"You have {remaining_chance} more chances.")
+    elif remaining_chance == 1:
         print("You only get 1 chance. Keep it up! 🦾🦾🦾")
 
 def show_summary(game_state):
@@ -89,11 +94,11 @@ def show_game_over(answer):
     print(f"The answer is {answer}.")
 
 # -------------------------
-# Game Layer
+# Control Layer
 # -------------------------
 def handle_round(guess, game_state):
     # Check Guess
-    result = check_guess(guess, game_state["number"])
+    result = check_guess(guess, game_state)
 
     game_state["stats"][result] += 1
 
@@ -104,7 +109,7 @@ def handle_round(guess, game_state):
     })
 
     # Show Result
-    show_result(result, len(game_state["history"]))
+    show_result(result, game_state)
 
     return result
 
@@ -126,9 +131,8 @@ def play_game():
         # Get the Result of a Round
         result = handle_round(guess, game_state)
 
-        # Show Remaining Chance
-        remaining_chance = game_state["max_chance"] - len(game_state["history"])
-        show_chance(remaining_chance)
+        # Get Remaining Chance
+        remaining_chance = get_remaining_chance(game_state)
 
         # Win Condiction
         if result == "correct":
@@ -141,6 +145,7 @@ def play_game():
             show_summary(game_state)
             break
 
+        show_chance(game_state)
         show_summary(game_state)
 
 def play_again():
