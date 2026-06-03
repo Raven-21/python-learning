@@ -40,9 +40,16 @@ def create_game_state():
     return {
         "number": random.randint(1, 100),
         "max_chance": choose_difficulty(),
-        "history": [],
-        "stats": {"high": 0, "low": 0, "correct": 0},
+        "history": []
     }
+
+def get_stats(game_state):
+    stats = {"high": 0, "low": 0, "correct": 0}
+
+    for record in game_state["history"]:
+        stats[record["result"]] += 1
+
+    return stats
 
 def get_remaining_chance(game_state):
     return game_state["max_chance"] - len(game_state["history"])
@@ -61,33 +68,39 @@ def check_guess(guess, game_state):
 # -------------------------
 # Presentation Layer
 # -------------------------
-def show_result(result, game_state):
+def show_result(result, first_try):
     if result == "high":
         print("Too High. ❌")
     elif result == "low":
         print("Too low. ❌")
     else:
-        if len(game_state["history"]) == 1:
+        if first_try == 1:
             print("Unbelievable!!! 😮😮😮 You just guessed it right in 1 time! ✅")
         else:
             print("Congratulations! 😁😁😁 You guessed it right. ✅")
 
-def show_chance(game_state):
-    remaining_chance = get_remaining_chance(game_state)
-
-    if remaining_chance > 1:
-        print(f"You have {remaining_chance} more chances.")
-    elif remaining_chance == 1:
-        print("You only get 1 chance. Keep it up! 🦾🦾🦾")
-
-def show_summary(game_state):
+def show_history(game_state):
     print("\nGuess History:")
     for record in game_state["history"]:
         print(f"{record['guess']} → {record['result']}")
 
+def show_stats(game_state):
+    stats = get_stats(game_state)
+
     print("\nGuess Stats:")
-    for key, value in game_state["stats"].items():
+    for key, value in stats.items():
         print(f"{key}: {value}")
+
+def show_summary(game_state):
+    print("\n=== GAME SUMMARY ===")
+    show_history(game_state)
+    show_stats(game_state)
+
+def show_chance(chance):
+    if chance > 1:
+        print(f"You have {chance} more chances.")
+    elif chance == 1:
+        print("You only get 1 chance. Keep it up! 🦾🦾🦾")
 
 def show_game_over(answer):
     print("Sorry! Game Over! 😥😥😥")
@@ -97,19 +110,19 @@ def show_game_over(answer):
 # Control Layer
 # -------------------------
 def handle_round(guess, game_state):
-    # Check Guess
+    # Check guess
     result = check_guess(guess, game_state)
+    # Check trying to win for the first time
+    is_first_try = (len(game_state["history"]) == 0)
 
-    game_state["stats"][result] += 1
-
-    # Add History
+    # Add history
     game_state["history"].append({
         "guess": guess,
         "result": result
     })
 
-    # Show Result
-    show_result(result, game_state)
+    # Show result
+    show_result(result, is_first_try)
 
     return result
 
@@ -120,7 +133,7 @@ def play_game():
     print(game_state["number"])
 
     while True:
-        # Get Input
+        # Get input
         guess = get_guess()
         if guess is None:
             continue
@@ -128,25 +141,24 @@ def play_game():
             print("Please enter a number between 1 and 100!")
             continue
 
-        # Get the Result of a Round
+        # Get the result of each round
         result = handle_round(guess, game_state)
 
-        # Get Remaining Chance
+        # Get remaining chance
         remaining_chance = get_remaining_chance(game_state)
 
-        # Win Condiction
+        # Win condiction
         if result == "correct":
             show_summary(game_state)
             break
 
-        # Lose Condition
+        # Lose condition
         if remaining_chance == 0:
             show_game_over(game_state["number"])
             show_summary(game_state)
             break
 
-        show_chance(game_state)
-        show_summary(game_state)
+        show_chance(remaining_chance)
 
 def play_again():
     while True:
