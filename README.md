@@ -1,270 +1,161 @@
-# 🐍 Python Learning Journey
+# 🐍 Python Learning
 
-This repository documents my Python learning journey through project-based development, continuous refactoring, and software architecture exploration.
+This repository documents my Python learning journey from the very beginning of programming to building structured software projects.
 
-## Contents
+The goal of this repository is not only to learn Python syntax, but also to develop problem-solving skills, software design thinking, and project-based learning habits.
 
-### Python Fundamentals
+
+# 📚 What This Repository Contains
+
+## Python Fundamentals
+
+Practice files covering core Python concepts:
 
 * Variables
-* Input and output
-* Conditional statements
+* Input and Output
+* Conditional Statements
 * Loops
 * Functions
+* Error Handling
 
-### Data Structures
+## Data Structures
+
+Learning and experimentation with:
 
 * List
-* Dictionary (dict)
+* Dictionary (`dict`)
 
-### Software Design
-
-* Layered architecture
-* Separation of concerns
-* State-driven design
-* Refactoring
-
-## Goal
-
-Learn Python by building real projects and gradually developing software engineering skills.
-
-Rather than memorizing syntax, I focus on understanding how programs are structured, how data flows through a system, and how code can be improved through iterative refactoring.
+These exercises focus on understanding how data is stored, organized, and processed within a program.
 
 
+# 🎮 First Project: Guess the Number
 
-# 🎮 Current Project: Guess the Number Game
+One of the main milestones in this learning journey is the development of a terminal-based **Guess the Number** game.
 
-A terminal-based number guessing game that evolved from a simple script into a structured mini-application.
+The project evolved through multiple versions:
 
-The project serves as a learning platform for Python fundamentals, data structures, software design, and project organization.
+* Guess the Number V1
+* Guess the Number V2
+* Guess the Number V3
+* Guess the Number V4
+* Guess the Number V5
+
+Rather than creating a project once and moving on, each version was continuously improved through refactoring and architectural redesign.
+
+The game became a practical playground for learning:
+
+* Functions
+* Lists
+* Dictionaries
+* Error handling
+* Program structure
+* Software design concepts
 
 
-# ✨ Features
+# 🚀 Project Continuation
 
-## Gameplay
+The Guess the Number game has now grown beyond a simple learning script.
 
-* Random number generation (1–100)
-* Difficulty selection
-* Limited attempts system
-* Replay system
-* Guess feedback (Too High / Too Low / Correct)
+Future development will continue in a dedicated repository:
 
-## Input System
-
-* Input validation
-* Exception handling (`try / except`)
-* Range validation
-
-## History System
-
-* Structured guess history tracking
-* List-based storage
-* Dictionary-based records
-
-Example:
-
-```python
-{
-    "guess": 42,
-    "result": "correct"
-}
+```text
+guess-the-number
 ```
 
-## Statistics System
+The new repository will focus on:
 
-Tracks game outcomes:
+* Multi-file architecture
+* Modular design
+* Software engineering practices
+* Project organization
+* Future feature expansion
 
-```python
-{
-    "high": 3,
-    "low": 2,
-    "correct": 1
-}
-```
-
-Provides simple gameplay analytics and state tracking.
-
-## Game State System
-
-The project introduces a centralized game state object:
-
-```python
-game_state = {
-    "number": 42,
-    "max_chance": 10,
-    "history": [],
-    "stats": {}
-}
-```
-
-This reduces parameter passing and groups related game data into a single structure.
+This repository will remain as a record of the learning process and the evolution of the project's early versions.
 
 
-# 🧠 Key Python Concepts Practiced
+# 🧠 Key Concepts Learned
 
-## Core Python
+## Python Fundamentals
 
 * Variables
-* Data types
-* Input / output
-* Conditional statements
+* Data Types
+* Input / Output
+* Conditional Statements
 * Loops
 * Functions
-
-## Error Handling
-
-* `try`
-* `except`
-* Defensive input validation
+* Exception Handling
 
 ## Data Structures
 
 ### List
 
-* `append()`
-* indexing
-* negative indexing
-* `len()`
-* traversal with `for`
+* Dynamic storage with `append()`
+* Traversal using `for`
+* Indexing and slicing
+* Data collection
 
-### Dictionary (dict)
+### Dictionary
 
-* key/value pairs
-* structured records
-* nested dictionaries
-* dictionary traversal
-* state management
+* Key-value structures
+* Nested dictionaries
+* Structured records
+* State management
 
+## Software Design
 
-# 🏗️ Software Design Concepts
-
-## Layered Architecture
-
-The project is organized into:
-
-* Input Layer
-* Logic Layer
-* Data Layer
-* Presentation Layer
-* Game Layer
-
-## Separation of Concerns
-
-### Logic Layer
-
-Responsible for game rules and decision making.
-
-Example:
-
-```python
-return "high"
-return "low"
-return "correct"
-```
-
-### Presentation Layer
-
-Responsible for displaying information.
-
-Example:
-
-```python
-show_result()
-show_summary()
-```
-
-### Data Layer
-
-Responsible for creating and managing game data structures.
-
-Example:
-
-```python
-create_game_state()
-```
+* Refactoring
+* Separation of Concerns
+* Layered Architecture
+* State-Driven Design
+* Single Source of Truth
 
 
-## State-Driven Design
+# 📈 Learning Progress
 
-The project evolved from managing multiple independent variables:
+### Phase 1 — Python Basics
 
-```python
-number
-history
-stats
-max_chance
-```
-
-to a centralized state object:
-
-```python
-game_state
-```
-
-This approach improves maintainability and scalability while reducing parameter complexity.
-
-
-# 📈 Project Evolution
-
-## Version 1
-
-* Basic guessing game
-* Simple loop logic
-
-## Version 2
-
-* Function-based architecture
-* Difficulty system
-* Replay system
+* Syntax fundamentals
+* Control flow
+* Functions
 * Error handling
 
-## Version 3
+### Phase 2 — Project Development
 
-* Structured history system
-* List + dictionary architecture
-* Logic/UI separation
+* Building the first complete application
+* Iterative improvement
+* Code organization
 
-## Version 4 (Current)
+### Phase 3 — Software Design
 
-* Statistics system
-* Data Layer
-* Game State architecture
-* State-driven design
-* Reduced parameter coupling
-* Improved project structure
+* Layered architecture
+* Data modeling
+* State management
+* Refactoring practices
 
+### Next Phase
 
-# 🚀 Planned Improvements
-
+* Modules and imports
 * Multi-file project structure
-* Save/load system
-* Best score tracking
-* Session statistics
-* Better terminal UI
-* Persistent data storage
+* Object-Oriented Programming
+* Software engineering principles
 
 
 # 🧭 Learning Philosophy
 
-This project follows a project-driven learning approach:
+This repository follows a project-driven learning approach.
 
 > "Understand by building. Improve by refactoring."
 
 The focus is on:
 
-* understanding program structure
-* thinking in systems
-* designing maintainable code
-* learning software architecture incrementally
+* Learning through real projects
+* Understanding how software is structured
+* Developing maintainable code
+* Building long-term software engineering skills
 
 
-# 📚 Current Learning Direction
+# 🌱 Looking Forward
 
-Currently exploring:
+This repository represents the beginning of my programming journey.
 
-* Python data structures
-* software architecture fundamentals
-* state-driven programming
-* code refactoring
-* project organization
-* clean code principles
+As I continue learning Python and software development, future projects will gradually move from simple scripts to more structured applications and eventually larger software systems.
